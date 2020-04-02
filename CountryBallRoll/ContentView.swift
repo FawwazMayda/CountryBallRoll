@@ -7,21 +7,50 @@
 //
 
 import SwiftUI
-
+struct ImageIndex {
+    var leftIndex = 0
+    var rightIndex = 0
+}
 struct ContentView: View {
-    @State var id=0;
+    @State var imgIndex = ImageIndex()
+    @State var show=false
+    var ballName = ["germanyball","italyball","indonesiaball","unball","japanball"]
+    
+    func updateIndex() {
+        let maxId = ballName.count
+        self.imgIndex.leftIndex = Int.random(in: 0..<maxId)
+        self.imgIndex.rightIndex = Int.random(in: 0..<maxId)
+        
+    }
     var body: some View {
-        HStack{
-            Image("italyball")
+        VStack{
+            HStack{
+                Image(ballName[imgIndex.leftIndex])
                 .resizable().aspectRatio(contentMode: .fit)
                 .frame(width: 150.0, height: 150.0)
             Spacer()
-            Image("germanyball")
+                Image(ballName[imgIndex.rightIndex])
             .resizable().aspectRatio(contentMode: .fit)
             .frame(width: 150.0, height: 150.0)
+            }
+            Divider()
+            Button(action: {
+                self.show.toggle()
+                self.updateIndex()
+            }) {
+                Text("BOLA").font(.footnote)
+            }
+            
+            if self.show {
+                Text("Mengapa Engkau Bola")
+            } else {
+                Text("Mengapa Engkau Kotak")
+            }
+            
         }
     }
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
