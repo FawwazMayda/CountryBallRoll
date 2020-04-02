@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var id= 0;
     var body: some View {
         Text("Hello, World!")
     }
