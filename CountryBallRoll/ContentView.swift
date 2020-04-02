@@ -23,30 +23,35 @@ struct ContentView: View {
         
     }
     var body: some View {
-        VStack{
-            HStack{
-                Image(ballName[imgIndex.leftIndex])
+        ZStack{
+           Image("worldball")
+            .resizable().edgesIgnoringSafeArea(.all)
+            VStack{
+                HStack{
+                    Image(ballName[imgIndex.leftIndex])
+                    .resizable().aspectRatio(contentMode: .fit)
+                    .frame(width: 150.0, height: 150.0)
+                Spacer()
+                    Image(ballName[imgIndex.rightIndex])
                 .resizable().aspectRatio(contentMode: .fit)
                 .frame(width: 150.0, height: 150.0)
-            Spacer()
-                Image(ballName[imgIndex.rightIndex])
-            .resizable().aspectRatio(contentMode: .fit)
-            .frame(width: 150.0, height: 150.0)
+                }
+                Divider()
+                Button(action: {
+                    self.show.toggle()
+                    self.updateIndex()
+                }) {
+                    Text("BOLA").font(.footnote)
+                        .fontWeight(.heavy)
+                }.background(Color.red)
+                
+                if self.show {
+                    Text("Mengapa Engkau Bola")
+                } else {
+                    Text("Mengapa Engkau Kotak")
+                }
+                
             }
-            Divider()
-            Button(action: {
-                self.show.toggle()
-                self.updateIndex()
-            }) {
-                Text("BOLA").font(.footnote)
-            }
-            
-            if self.show {
-                Text("Mengapa Engkau Bola")
-            } else {
-                Text("Mengapa Engkau Kotak")
-            }
-            
         }
     }
 }
