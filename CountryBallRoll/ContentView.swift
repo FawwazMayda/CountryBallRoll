@@ -9,9 +9,17 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var id= 0;
+    @State var id=0;
     var body: some View {
-        Text("Hello, World!")
+        HStack{
+            Image("italyball")
+                .resizable().aspectRatio(contentMode: .fit)
+                .frame(width: 150.0, height: 150.0)
+            Spacer()
+            Image("germanyball")
+            .resizable().aspectRatio(contentMode: .fit)
+            .frame(width: 150.0, height: 150.0)
+        }
     }
 }
 
